@@ -8,4 +8,10 @@ const app = express()
 
 const httpServer = http.createServer(app)
 
-const socketServer = socketIO(httpServer)
+const socketServer = socketIO(httpServer, { cors: { origin: '*' } })
+
+app.use(express.json({ extended: false}))
+
+app.use(cors({origin: true, credentials: true}))
+
+app.use('/api/users', userRoutes)
